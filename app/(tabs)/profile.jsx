@@ -8,10 +8,7 @@ const Profile = () => {
     profilePicture: 'https://i.pinimg.com/564x/65/a1/0b/65a10b505e3001c955109b7f1906a314.jpg', // Placeholder image URL
   };
 
-  const handleLogout = () => {
-    // Handle logout functionality here
-    console.log('Logged out');
-  };
+  
 
   return (
     <View style={styles.container}>
@@ -19,7 +16,10 @@ const Profile = () => {
       <Text style={styles.name}>{user.name}</Text>
       <Text style={styles.email}>{user.email}</Text>
 
-      <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+      <TouchableOpacity 
+      style={styles.logoutButton}
+      onPress={() => navigation.navigate('index')}
+      >
         <Text style={styles.buttonText}>Logout</Text>
       
       </TouchableOpacity>

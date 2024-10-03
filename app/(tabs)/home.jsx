@@ -1,214 +1,170 @@
-import { StyleSheet, Text, View,TouchableOpacity, Image, FlatList, ProgressBarAndroid } from 'react-native'
-import { Bar } from 'react-native-progress';
-import React from 'react'
+import React from 'react';
+import { View, Text, Image, StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
 
 const home = () => {
-  const reportsData = [
-    { id: 1, category: 'Food', amount: 750 },
-    { id: 2, category: 'Transportation Fee', amount: 450 },
-    { id: 3, category: 'Clothes', amount: 1200 },
-    { id: 4, category: 'Load', amount: 102 },
-  ];
-
-  const financialGoals = [
-    { id: 1, goal: 'Save for a Trip', target: 2000, current: 1200 },
-  ];
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('profile')}
-      >
-        <Image source={'../assets/icons/profile.png'} style={styles.logo} />
-        <Text style={styles.buttonText}>Profile</Text>
-      </TouchableOpacity>
-      <View style={styles.summary}>
-        <View>
-          <Text style={styles.summaryTitle}>Oct·Expenses</Text>
-          <Text style={styles.expense}>0</Text>
+      <StatusBar barStyle="light-content" />
+
+      {/* Top Section */}
+      <View style={styles.topSection}>
+        {/* Profile Information */}
+        <View style={styles.profileContainer}>
+          {/* Profile A */}
+          <View style={styles.profileItem}>
+            <TouchableOpacity
+  style={styles.profileButton}
+  onPress={() => navigation.navigate('profile')} // Navigate to Profile screen
+>
+  <Image
+    source={{ uri: 'https://i.pinimg.com/564x/65/a1/0b/65a10b505e3001c955109b7f1906a314.jpg' }} // Profile image URL
+    style={styles.profileImage} // Use a defined style for the image
+  />
+  <Text style={styles.profileText}>Profile</Text>
+</TouchableOpacity>
+            <Text style={styles.labelText}>Expense</Text>
+            <Text style={styles.valueText}>0</Text>
+          </View>
+          <View style={styles.profileItem}>
+            <Text style={styles.labelText1}>Income</Text>
+            <Text style={styles.valueText}>0</Text>
+          </View>
+      
         </View>
-        <View>
-          <Text style={styles.summaryTitle}>Oct·Income</Text>
-          <Text style={styles.income}>0</Text>
+
+        {/* Middle Cat Icon */}
+        <View style={styles.catContainer}>
+          <Image
+            source={'../assets/kyutiecat.png'} // Using the imported local image
+            style={styles.catIcon}
+          />
         </View>
       </View>
-   
-    <Text style={styles.title}>Spending Reports</Text>
-      <FlatList
-        data={reportsData}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.report}>
-            <Text style={styles.category}>{item.category}</Text>
-            <Text style={styles.amount}>${item.amount}</Text>
-          </View>
-        )}
-      />
-    
-  {/* Financial Goals Section */}
-  <Text style={styles.title}>Financial Goals</Text>
-      {financialGoals.map(goal => (
-        <View key={goal.id} style={styles.goalContainer}>
-          <Text style={styles.goalText}>{goal.goal}</Text>
-          <View style={styles.progressContainer}>
-            <Text style={styles.progressText}>${goal.current} / ${goal.target}</Text>
-            <Bar
-              progress={goal.current / goal.target}
-              width={null}
-              height={10}
-              color="#007BFF"
-              borderRadius={5}
-              style={styles.progressBar}
-            />
-          </View>
-        </View>
-      ))}
-  </View>
-  
+
+      {/* Bottom Section - Buttons */}
+      <View style={styles.bottomSection}>
+        {/* Ledger Button */}
+        <TouchableOpacity 
+        onPress={() => navigation.navigate('ledger')}
+        style={styles.iconContainer}>
+          <Image
+            source={'../assets/ledger.png'}// Replace with actual icon
+            style={styles.icon}
+          />
+          <Text style={styles.iconLabel}>Ledger</Text>
+        </TouchableOpacity>
+
+        {/* Category Button */}
+        <TouchableOpacity style={styles.iconContainer}>
+          <Image
+            source={'../assets/category.png'} // Replace with actual icon
+            style={styles.icon}
+          />
+          <Text style={styles.iconLabel}>Category</Text>
+        </TouchableOpacity>
+
+        {/* Bookmarks Button */}
+        <TouchableOpacity style={styles.iconContainer}>
+          <Image
+            source={'../assets/bookmarks.png'} // Replace with actual icon
+            style={styles.icon}
+          />
+          <Text style={styles.iconLabel}>Bookmarks</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
-};
-
-
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#f5f5f5',
+  },
+
+  /* Top Section */
+  topSection: {
+    backgroundColor: '#f2a365', // Light brown color
+    width: '100%',
+    height: '45%',
+    paddingTop: 50,
+    paddingBottom: 20,
+    justifyContent: 'space-between',
+    alignItems: 'center',
     
-    alignItems: 'center',
-    backgroundColor: '#B4744D',
   },
-  button: {
-    width: 120,
-    marginRight:580,
+ 
+  profileContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#007BFF',
-    borderRadius: 5,
-    padding: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    elevation: 5,
+    justifyContent: 'space-around',
+    width: '100%',
   },
-  logo: {
-    width: 30,
-    height: 30,
-    marginRight: 10,
-  },
-  buttonText: {
+
+  labelText: {
+    fontSize: 14,
     color: '#fff',
-    fontSize: 16,
+    marginTop: 10,
   },
-  button1: {
-    marginLeft:500,
+
+  labelText1: {
+    fontSize: 14,
+    color: '#fff',
+    marginTop: 45,
+  },
+
+  valueText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#fff',
+    marginTop: 5,
+  },
+
+  catContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+   
+  },
+
+  catIcon: {
+    width: 180,
+    height: 180,
+    marginTop:1,
+    
+  },
+
+  /* Bottom Section */
+  bottomSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    backgroundColor: '#AAC9F6', // Light gray color
+    width: '100%',
+    height: '58%',
+    paddingVertical: 20,
     position: 'absolute',
-    top: 10, // Adjust to fit your design needs
-    right: 10, // Adjust to fit your design needs
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#007BFF',
-    borderRadius: 5,
-    padding: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    elevation: 5,
+    bottom: 0,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
   },
-  logo: {
-    width: 30,
-    height: 30,
-    marginRight: 10,
+
+  icon:{
+    height: 50,
+    width: 50,
   },
-  buttonText1: {
-    color: '#fff',
-    fontSize: 16,
+  profileButton: {
+    padding: 5, // Reduce padding for a tighter touchable area
+    backgroundColor: '#f2a365', // Keep the background color
+    borderRadius: 10, // Rounded corners
+    flexDirection: 'row', // Align image and text in a row
+    alignItems: 'center', // Center the content vertically
   },
   
-  summary: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 30,
-    paddingHorizontal: 20,
-  },
-  summaryTitle: {
-    fontSize: 16,
-    color: '#8b8b8b',
-    marginLeft: 20,
-    color: 'black',
-  },
-  expense: {
-    fontSize: 32,
-    color: '#ff5e57',
-    marginLeft: 20,
-    
-  },
-  income: {
-    fontSize: 32,
-    color: '#5ec87d',
-    marginLeft: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    color: '#333',
-    textAlign: 'left',
-  },
-  report: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: '#fff',
-    padding: 15,
-    marginBottom: 10,
-    borderRadius: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 3,
-  },
-  category: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333',
-  },
-  amount: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#ff5e57',
-  },
-  goalContainer: {
-    backgroundColor: '#fff',
-    padding: 15,
-    borderRadius: 8,
-    marginBottom: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 3,
-    
-  },
-  goalText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333',
-  },
-  progressContainer: {
-    marginTop: 10,
-    width: 200,
-    height: 50,
-  },
-  progressText: {
-    fontSize: 14,
-    color: '#888',
-    marginBottom: 5,
-  },
-  progressBar: {
-    height: 10,
-    borderRadius: 5,
+  profileImage: {
+    height: 30, // Keep the height
+    width: 30, // Keep the width
+    borderRadius:20,
+    marginRight: 5, // Add a small right margin to separate image and text
   },
 });
-export default home
+
+
+export default home;
