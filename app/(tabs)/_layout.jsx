@@ -38,7 +38,7 @@ const Tabslayout = () => {
       <Tabs.Screen
               name="bills"
               options={{
-              title: "Bills",
+              title: "Savings",
               headerShown:false,
       tabBarIcon: ({color,focused})=>(
           <TabIcon

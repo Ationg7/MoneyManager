@@ -1,140 +1,212 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-const Create = () => {
-  const [category, setCategory] = useState('');
-  const [budget, setBudget] = useState('');
-  const [budgets, setBudgets] = useState([]);
+const create = () => {
+  const [input, setInput] = useState(''); // Holds the input
+  const [result, setResult] = useState(null); // Holds the result
 
-  const addBudget = () => {
-    if (category && budget) {
-      setBudgets([...budgets, { id: budgets.length + 1, category, budget: parseFloat(budget), current: 0 }]);
-      setCategory('');
-      setBudget('');
+  // Handles number and operator button presses
+  const handlePress = (value) => {
+    setInput((prevInput) => prevInput + value);
+  };
+
+  // Handle OK button to calculate the result
+  const handleOKPress = () => {
+    try {
+      const calculation = eval(input); // Evaluate the input expression
+      setResult(calculation);
+    } catch (error) {
+      setResult('Error');
     }
   };
 
-  const updateCurrentSpending = (id, amount) => {
-    setBudgets(budgets.map(b => 
-      b.id === id ? { ...b, current: Math.min(b.budget, b.current + amount) } : b
-    ));
+  // Handle backspace button
+  const handleBackspacePress = () => {
+    setInput((prevInput) => prevInput.slice(0, -1)); // Remove last character
   };
-  const removeBudget = (id) => {
-    setBudgets(budgets.filter(b => b.id !== id));
-  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Create Budgets</Text>
+      {/* Header with Tabs */}
+      <View style={styles.header}>
+        <TouchableOpacity style={styles.backButton}>
+          <Text style={styles.backText}>{'<'}</Text>
+        </TouchableOpacity>
+        <View style={styles.tabContainer}>
+          <TouchableOpacity style={styles.tab}>
+            <Text style={styles.tabText}>Expenses</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.tab}>
+            <Text style={styles.tabText}>Income</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Category (e.g., Food)"
-        value={category}
-        onChangeText={setCategory}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Budget Amount"
-        value={budget}
-        onChangeText={setBudget}
-        keyboardType="numeric"
-      />
+      {/* Cat Image */}
+      <View style={styles.imageContainer}>
+        <Image
+          source={'assets/jar-removebg-preview.png'} // Replace with actual image link
+          style={styles.catImage}
+        />
+      </View>
 
-      <TouchableOpacity style={styles.button} onPress={addBudget}>
-        <Text style={styles.buttonText}>Add Budget</Text>
-      </TouchableOpacity>
+      {/* Display */}
+      <View style={styles.display}>
+        <Text style={styles.inputText}>{input || '0'}</Text>
+        {result !== null && <Text style={styles.resultText}>={result}</Text>}
+      </View>
 
-      <FlatList
-        data={budgets}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.budgetItem}>
-            <Text style={styles.budgetText}>{item.category}: ${item.budget}</Text>
-            <Text style={styles.progressText}>Spent: ${item.current} / ${item.budget}</Text>
-            <TouchableOpacity
-              style={styles.updateButton}
-              onPress={() => updateCurrentSpending(item.id, 100)} // Example to add $100 to current spending
-            >
-              <Text style={styles.buttonText}>Add $100</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.removeButton}
-              onPress={() => removeBudget(item.id)} // Remove budget
-            >
-              <Text style={styles.buttonText}>Remove</Text>
-            </TouchableOpacity>
-          </View>
-        )}
-      />
+      {/* Calculator */}
+      <View style={styles.calcContainer}>
+        <View style={styles.calcRow}>
+          <CalcButton label="1" onPress={() => handlePress('1')} />
+          <CalcButton label="2" onPress={() => handlePress('2')} />
+          <CalcButton label="3" onPress={() => handlePress('3')} />
+        </View>
+        <View style={styles.calcRow}>
+          <CalcButton label="4" onPress={() => handlePress('4')} />
+          <CalcButton label="5" onPress={() => handlePress('5')} />
+          <CalcButton label="6" onPress={() => handlePress('6')} />
+        </View>
+        <View style={styles.calcRow}>
+          <CalcButton label="7" onPress={() => handlePress('7')} />
+          <CalcButton label="8" onPress={() => handlePress('8')} />
+          <CalcButton label="9" onPress={() => handlePress('9')} />
+        </View>
+        <View style={styles.calcRow}>
+          <CalcButton label="0" onPress={() => handlePress('0')} />
+          <CalcButton label="+" onPress={() => handlePress('+')} />
+          <CalcButton label="-" onPress={() => handlePress('-')} />
+        </View>
+        <View style={styles.sideButtons}>
+          <CalcButton label="OK" isSideButton onPress={handleOKPress} />
+          <CalcButton label="<-" isSideButton onPress={handleBackspacePress} />
+        </View>
+      </View>
     </View>
   );
 };
 
+// Button component for calculator
+const CalcButton = ({ label, isSideButton = false, onPress }) => (
+  <TouchableOpacity style={[styles.calcButton, isSideButton && styles.sideButton]} onPress={onPress}>
+    <Text style={styles.calcButtonText}>{label}</Text>
+  </TouchableOpacity>
+);
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: '#B4744D',
+    backgroundColor: '#D19A72', // Background color similar to the image
+    padding: 10,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
+  header: {
+    flexDirection: 'row',
     marginBottom: 20,
+  },
+  backButton: {
+    padding: 10,
+  },
+  backText: {
+    fontSize: 30,
+    color: '#B0C4DE',
+    textAlign: 'left',
+    fontWeight: 'bold',
+  },
+  tabContainer: {
+    flexDirection: 'row',
+    marginLeft: 150,
+    width: 150,
+    height: 40,
+  },
+  tab: {
+    backgroundColor: '#B0C4DE',
+    padding: 10,
+    marginHorizontal: 5,
+    borderRadius: 10,
+    marginRight: 50,
+    width: 150,
+    height: 40,
+  },
+  tabText: {
+    color: '#fff',
+    fontWeight: 'bold',
     textAlign: 'center',
   },
-  input: {
-    height: 40,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-    borderRadius: 5,
-  },
-  button: {
-    backgroundColor: '#007BFF',
-    padding: 10,
-    borderRadius: 5,
+  imageContainer: {
+    marginVertical: 20,
     alignItems: 'center',
-    marginBottom: 20,
   },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
+  catImage: {
+    width: 150,
+    height: 150,
+    resizeMode: 'contain',
+    alignItems: 'center',
+    marginTop: 5,
   },
-  budgetItem: {
-    backgroundColor: '#fff',
-    padding: 15,
-    borderRadius: 8,
-    marginBottom: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 3,
-  },
-  budgetText: {
+  amountText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#333',
-  },
-  progressText: {
-    fontSize: 14,
-    color: '#888',
-  },
-  updateButton: {
-    marginTop: 10,
-    backgroundColor: '#28A745',
+    marginVertical: 10,
+    backgroundColor: '#B0C4DE',
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 10,
+    textAlign: 'center',
+    marginTop: 5,
+  },
+  display: {
+    width: '100%',
+    padding: 10,
+    marginBottom: 10,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    justifyContent: 'center',
     alignItems: 'center',
   },
-  removeButton: {
-    marginTop: 10,
-    backgroundColor: '#dc3545', // Red for the remove button
+  inputText: {
+    fontSize: 32,
+    fontWeight: 'bold',
+  },
+  resultText: {
+    fontSize: 24,
+    color: 'green',
+  },
+  calcContainer: {
+    width: '100%',
+    backgroundColor: '#B0C4DE',
+    borderRadius: 10,
     padding: 10,
-    borderRadius: 5,
+    justifyContent: 'center',
+  },
+  calcRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginVertical: 5,
+  },
+  calcButton: {
+    backgroundColor: '#fff',
+    width: 70,
+    height: 70,
+    justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 10,
+  },
+  calcButtonText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  sideButtons: {
+    marginTop: 10,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: 150,
+  },
+  sideButton: {
+    backgroundColor: '#fff',
+    width: 'auto',
+    padding: 20,
+    marginBottom: 10,
   },
 });
 
-export default Create;
+export default create;

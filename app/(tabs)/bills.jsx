@@ -12,12 +12,12 @@ const bills = () => {
   const checkAlerts = (item) => {
     const spendingPercentage = (item.amount / item.budget) * 100;
     if (spendingPercentage > 80) { // Example threshold for alert
-      Alert.alert('Alert', `You have spent over ${spendingPercentage.toFixed(2)}% of your ${item.category} budget.`);
+      Alert.alert('Alert', `You have spent over {spendingPercentage.toFixed(2)}% of your {item.category} budget.`);
     }
   };
 
   const setReminder = (item) => {
-    Alert.alert('Reminder Set', `Reminder set for ${item.category}: Spend less than $${item.budget - item.amount}.`);
+    Alert.alert('Reminder Set', `Reminder set for {item.category}: Spend less than {item.budget - item.amount}.`);
   };
 
   return (
@@ -41,7 +41,7 @@ const bills = () => {
         renderItem={({ item }) => (
           <View style={styles.report} onLayout={() => checkAlerts(item)}>
             <Text style={styles.category}>{item.category}</Text>
-            <Text style={styles.amount}>${item.amount}</Text>
+            <Text style={styles.amount}>{item.amount}</Text>
             <TouchableOpacity style={styles.reminderButton} onPress={() => setReminder(item)}>
               <Text style={styles.buttonText}>Set Reminder</Text>
             </TouchableOpacity>

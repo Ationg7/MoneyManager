@@ -2,6 +2,19 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
 
 const home = () => {
+  <FlatList
+        data={reportsData}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <View style={styles.report} onLayout={() => checkAlerts(item)}>
+            <Text style={styles.category}>{item.category}</Text>
+            <Text style={styles.amount}>{item.amount}</Text>
+            <TouchableOpacity style={styles.reminderButton} onPress={() => setReminder(item)}>
+              <Text style={styles.buttonText}>Set Reminder</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+      />
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
@@ -43,34 +56,20 @@ const home = () => {
 
       {/* Bottom Section - Buttons */}
       <View style={styles.bottomSection}>
-        {/* Ledger Button */}
-        <TouchableOpacity 
-        onPress={() => navigation.navigate('ledger')}
-        style={styles.iconContainer}>
-          <Image
-            source={'../assets/ledger.png'}// Replace with actual icon
-            style={styles.icon}
-          />
-          <Text style={styles.iconLabel}>Ledger</Text>
-        </TouchableOpacity>
-
-        {/* Category Button */}
-        <TouchableOpacity style={styles.iconContainer}>
-          <Image
-            source={'../assets/category.png'} // Replace with actual icon
-            style={styles.icon}
-          />
-          <Text style={styles.iconLabel}>Category</Text>
-        </TouchableOpacity>
-
-        {/* Bookmarks Button */}
-        <TouchableOpacity style={styles.iconContainer}>
-          <Image
-            source={'../assets/bookmarks.png'} // Replace with actual icon
-            style={styles.icon}
-          />
-          <Text style={styles.iconLabel}>Bookmarks</Text>
-        </TouchableOpacity>
+      <FlatList
+        data={reportsData}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <View style={styles.report} onLayout={() => checkAlerts(item)}>
+            <Text style={styles.category}>{item.category}</Text>
+            <Text style={styles.amount}>{item.amount}</Text>
+            <TouchableOpacity style={styles.reminderButton} onPress={() => setReminder(item)}>
+              <Text style={styles.buttonText}>Set Reminder</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+      />
+       
       </View>
     </View>
   );
@@ -147,8 +146,11 @@ const styles = StyleSheet.create({
   },
 
   icon:{
-    height: 50,
-    width: 50,
+    height: 30,
+    width: 30,
+  },
+  iconLabel:{
+
   },
   profileButton: {
     padding: 5, // Reduce padding for a tighter touchable area
