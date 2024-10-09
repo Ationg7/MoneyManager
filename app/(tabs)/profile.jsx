@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#B4744D',
+    backgroundColor: '#e4a05e',
     padding: 20,
   },
   profilePicture: {
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   logoutButton: {
-    backgroundColor: '#007BFF',
+    backgroundColor: '#B0C4DE',
     padding: 10,
     borderRadius: 5,
   },

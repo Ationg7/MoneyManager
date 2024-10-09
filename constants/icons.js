@@ -5,6 +5,7 @@ import profile from "../assets/icons/profile.png";
 import bills from "../assets/icons/bills.png";
 
 
+
 export default {
  
   bookmark,
@@ -12,4 +13,5 @@ export default {
   plus,
   profile,
   bills,
+  
  };

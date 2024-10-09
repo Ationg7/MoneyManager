@@ -29,15 +29,12 @@ const create = () => {
     <View style={styles.container}>
       {/* Header with Tabs */}
       <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton}>
-          <Text style={styles.backText}>{'<'}</Text>
-        </TouchableOpacity>
         <View style={styles.tabContainer}>
           <TouchableOpacity style={styles.tab}>
             <Text style={styles.tabText}>Expenses</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.tab}>
-            <Text style={styles.tabText}>Income</Text>
+            <Text style={styles.tabText}>Save</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -97,41 +94,33 @@ const CalcButton = ({ label, isSideButton = false, onPress }) => (
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#D19A72', // Background color similar to the image
+    backgroundColor: '#e4a05e', // Background color similar to the image
     padding: 10,
   },
   header: {
     flexDirection: 'row',
-    marginBottom: 20,
-  },
-  backButton: {
-    padding: 10,
-  },
-  backText: {
-    fontSize: 30,
-    color: '#B0C4DE',
-    textAlign: 'left',
-    fontWeight: 'bold',
+    marginTop: 20,
+    marginLeft: 20,
+    alignContent:'center',
+   
   },
   tabContainer: {
     flexDirection: 'row',
-    marginLeft: 150,
-    width: 150,
-    height: 40,
   },
   tab: {
     backgroundColor: '#B0C4DE',
     padding: 10,
-    marginHorizontal: 5,
     borderRadius: 10,
-    marginRight: 50,
     width: 150,
     height: 40,
+    flexDirection:'row',
+    marginRight:10,
+    
   },
   tabText: {
     color: '#fff',
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign:'center',
   },
   imageContainer: {
     marginVertical: 20,
@@ -173,6 +162,7 @@ const styles = StyleSheet.create({
   },
   calcContainer: {
     width: '100%',
+    height: '50%',
     backgroundColor: '#B0C4DE',
     borderRadius: 10,
     padding: 10,
@@ -185,8 +175,8 @@ const styles = StyleSheet.create({
   },
   calcButton: {
     backgroundColor: '#fff',
-    width: 70,
-    height: 70,
+    width: 60,
+    height: 40,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
@@ -196,16 +186,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   sideButtons: {
-    marginTop: 10,
+    marginTop:10,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    height: 150,
+    height: 80, // Increased height for better spacing
+    marginLeft: 10, // Add space between side buttons and other buttons
   },
   sideButton: {
-    backgroundColor: '#fff',
-    width: 'auto',
-    padding: 20,
-    marginBottom: 10,
+    width: 300, // Width to make side buttons larger
+    height: 35, // Height to fit the design
+    borderRadius: 5, // Rounded corners
+    backgroundColor: '#fff', // Background color of side buttons
   },
 });
 

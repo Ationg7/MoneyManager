@@ -1,27 +1,52 @@
-import { View, Text, Image, } from 'react-native'
-import React from 'react'
+import { View, Text, Image, StyleSheet } from 'react-native';
+import React from 'react';
 import { Link } from 'expo-router';
 
-const index = () => {
+const Index = () => {
   return (
-    
-    <View className="flex-1 items-center justify-center bg-gray-800">
-  <Image
-    source={require('../assets/jar-removebg-preview.png')}
-    style={{ width: 250, height: 250, alignSelf: 'center'}}
-  />
-  <View/>
-  <View style={{ alignSelf:'center'}}>
-    <Text className="text-white font-bold text-4xl ">
-      Money Manager
-    </Text>
-  
-    <Link className="text-white font-bold text-4xl" href="/home">
-        Let's get started
-    </Link>
-  </View>
-</View>
-  )
-}
+    <View style={styles.container}>
+      <Image
+        source={require('../assets/jar-removebg-preview.png')}
+        style={styles.image}
+      />
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>Money Manager</Text>
+        <Link href="/home" style={styles.link}>
+          Let's get started
+        </Link>
+      </View>
+    </View>
+  );
+};
 
-export default index
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#e4a05e',
+  },
+  image: {
+    width: 250,
+    height: 250,
+    alignSelf: 'center',
+    marginBottom: 20,
+  },
+  textContainer: {
+    alignItems: 'center',
+  },
+  title: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 36,
+    marginBottom: 20,
+  },
+  link: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',  // Optional: to make the link look more like a clickable link
+  },
+});
+
+export default Index;
