@@ -20,4 +20,4 @@ HTML, CSS and JS
 # Sign In Screen
 <img src = "assets/signin.png"></img>
 # Sign Up Screen
-<img src = "assets/signup.png"></img>
+<img src = "assets/signup.png)"></img>
