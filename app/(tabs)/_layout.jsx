@@ -74,7 +74,7 @@ const Tabslayout = () => {
               headerShown:false,
       tabBarIcon: ({color,focused})=>(
           <TabIcon
-              icon={icons.bookmark}
+              icon={icons.asset}
               color={color}
               name="Assets"
               focused={focused}

@@ -36,6 +36,7 @@ const MainLayout = () => {
    <Stack>
       <Stack.Screen options={{headerShown: false}}name="index"/>
       <Stack.Screen options={{headerShown: false}}name="(tabs)"/>
+      <Stack.Screen options={{headerShown: false}}name="(auth)"/>
    </Stack>
   )
 }
