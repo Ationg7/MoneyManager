@@ -16,7 +16,7 @@ React Native
 AppWrite
 HTML, CSS and JS
 # Home Screen
-<img src = ""></img>
+<img src = "assets/homesc.png"></img>
 # Sign In Screen
 <img src = "assets/signin.png"></img>
 # Sign Up Screen
