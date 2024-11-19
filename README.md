@@ -6,12 +6,14 @@ Share Projects
 Message other developers
 Rate others work
 Search other developers
+
 # Course Overview
 Basic React Native Components
 Database Design using Appwrite
 User Registration & Authenticaiton
 Deployment
-# Tech Stack
+
+# My Stack
 React Native
 AppWrite
 HTML, CSS and JS
