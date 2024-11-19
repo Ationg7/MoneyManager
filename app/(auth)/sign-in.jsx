@@ -4,7 +4,7 @@ import { Link, useRouter, } from "expo-router";
 import FormField from "../../components/FormField";
 import CustomButton from "../../components/CustomButton";
 import { SafeAreaView } from "react-native-safe-area-context"; 
-
+import { getCurrentUser, signIn } from "../../lib/appwrite";
 const SignIn = () => {
   const [form, setForm] = useState({
     email: "",
@@ -14,20 +14,22 @@ const SignIn = () => {
   const router = useRouter(); 
 
   const submit = async () => {
-    if (!form.email || !form.password) {   
-      Alert.alert('Error', 'Please fill in all the fields');
-      return;
+    if (form.email === "" || form.password === "") {
+      Alert.alert("Error", "Please fill in all fields");
     }
-    
+
     setIsSubmitting(true);
-  
+
     try {
-      const result = await createUser(form.email, form.password);
-      console.log(result); 
-      // Navigate after successful sign up
-      router.replace('/home');  
+      await signIn(form.email, form.password);
+      const result = await getCurrentUser();
+      setUser(result);
+      setIsLogged(true);
+
+      Alert.alert("Success", "User signed in successfully");
+      router.replace("/home");
     } catch (error) {
-      Alert.alert('Error', error.message);
+      Alert.alert("Error", error.message);
     } finally {
       setIsSubmitting(false);
     }
