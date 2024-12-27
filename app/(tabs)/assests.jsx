@@ -10,12 +10,12 @@ const assets = () => {
         <View style={styles.card}>
           {/* <Image style={styles.icon} source={require('../assets/savings.png')} /> */}
           <Text style={styles.text}>Savings</Text>
-          <Text style={styles.amount}>2000</Text>
+          <Text style={styles.amount}>3000</Text>
         </View>
         <View style={styles.card}>
           {/* <Image style={styles.icon} source={require('./assets/loan-icon.png')} /> */}
           <Text style={styles.text}>Expenses</Text>
-          <Text style={styles.amount}>1500</Text>
+          <Text style={styles.amount}>2200</Text>
         </View>
       </View>
 
@@ -26,7 +26,7 @@ const assets = () => {
           <Text style={styles.label}>Cash</Text>
           <Text style={styles.percentage}>4.00%</Text>
         </View>
-        <ProgressBar progress={0.5} color="#B0C4DE" style={styles.progressBar} />
+        <ProgressBar progress={0.5} color="#DB88A1" style={styles.progressBar} />
       </View>
 
       {/* Liabilities Section */}
@@ -36,7 +36,7 @@ const assets = () => {
           <Text style={styles.label}>Food</Text>
           <Text style={styles.percentage}>20%</Text>
         </View>
-        <ProgressBar progress={0.7} color="#B0C4DE" style={styles.progressBar} />
+        <ProgressBar progress={0.7} color="#DB88A1" style={styles.progressBar} />
       </View>
 
       <View style={styles.section}>
@@ -44,14 +44,14 @@ const assets = () => {
           <Text style={styles.label}>Transportation Fee</Text>
           <Text style={styles.percentage}>5%</Text>
         </View>
-        <ProgressBar progress={0.7} color="#B0C4DE" style={styles.progressBar} />
+        <ProgressBar progress={0.7} color="#DB88A1" style={styles.progressBar} />
       </View>
       <View style={styles.section}>
         <View style={styles.row}>
           <Text style={styles.label}>Clothes</Text>
           <Text style={styles.percentage}>80%</Text>
         </View>
-        <ProgressBar progress={0.7} color="#B0C4DE" style={styles.progressBar} />
+        <ProgressBar progress={0.7} color="#DB88A1" style={styles.progressBar} />
       </View>
     </View>
   );
@@ -60,7 +60,7 @@ const assets = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e4a05e',
+    backgroundColor: '#F6D6E3',
     padding: 16,
   },
   header: {
@@ -69,13 +69,15 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   card: {
-    backgroundColor: '#B0C4DE',
+    backgroundColor: '#F8C7D9',
     borderRadius: 10,
     padding: 20,
     alignItems: 'center',
     flex: 1,
     marginHorizontal: 8,
+    
   },
+  
   icon: {
     width: 40,
     height: 40,

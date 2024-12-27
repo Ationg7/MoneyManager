@@ -29,7 +29,7 @@ const SignUp = () => {
       console.log(result); //Check the result 
 
       // Step 2: Redirect to home page after successful sign-up and login
-      router.replace('/home'); 
+      router.replace('/sign-in'); 
 
     } catch (error) {
       // Step 3: Catch any errors and display them

@@ -1,6 +1,7 @@
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
-
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { Link, Redirect, router } from "expo-router";
+import CustomButton from '../../components/CustomButton';
 const Profile = () => {
   const user = {
     name: 'kyutieperli',
@@ -16,13 +17,11 @@ const Profile = () => {
       <Text style={styles.name}>{user.name}</Text>
       <Text style={styles.email}>{user.email}</Text>
 
-      <TouchableOpacity 
-      style={styles.logoutButton}
-      onPress={() => navigation.navigate('index')}
-      >
-        <Text style={styles.buttonText}>Logout</Text>
-      
-      </TouchableOpacity>
+    
+      <CustomButton
+              title="Logout"
+              handlePress={() => router.push('/sign-in')} 
+            />
     </View>
   );
 };
@@ -32,7 +31,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#e4a05e',
+    backgroundColor: '#F6D6E3',
     padding: 20,
   },
   profilePicture: {
@@ -52,12 +51,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   logoutButton: {
-    backgroundColor: '#B0C4DE',
+    backgroundColor: '#F8C7D9',
     padding: 10,
     borderRadius: 5,
   },
   buttonText: {
-    color: '#fff',
+    color: 'black',
     fontSize: 16,
   },
 });

@@ -39,17 +39,12 @@ const create = () => {
         </View>
       </View>
 
-      {/* Cat Image */}
-      <View style={styles.imageContainer}>
-        <Image
-          source={'assets/jar-removebg-preview.png'} // Replace with actual image link
-          style={styles.catImage}
-        />
-      </View>
+  
+      
 
       {/* Display */}
       <View style={styles.display}>
-        <Text style={styles.inputText}>{input || '0'}</Text>
+        <Text style={styles.inputText}>{input || ''}</Text>
         {result !== null && <Text style={styles.resultText}>={result}</Text>}
       </View>
 
@@ -94,7 +89,7 @@ const CalcButton = ({ label, isSideButton = false, onPress }) => (
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e4a05e', // Background color similar to the image
+    backgroundColor: '#F6D6E3', // Background color similar to the image
     padding: 10,
   },
   header: {
@@ -108,31 +103,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   tab: {
-    backgroundColor: '#B0C4DE',
+    backgroundColor: '#F8C7D9',
     padding: 10,
     borderRadius: 10,
     width: 150,
     height: 40,
-    flexDirection:'row',
     marginRight:10,
+    alignItems: 'center',
+    
     
   },
   tabText: {
-    color: '#fff',
     fontWeight: 'bold',
     textAlign:'center',
   },
-  imageContainer: {
-    marginVertical: 20,
-    alignItems: 'center',
-  },
-  catImage: {
-    width: 150,
-    height: 150,
-    resizeMode: 'contain',
-    alignItems: 'center',
-    marginTop: 5,
-  },
+
+ 
   amountText: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -145,9 +131,11 @@ const styles = StyleSheet.create({
   },
   display: {
     width: '100%',
+    height: 75,
     padding: 10,
-    marginBottom: 10,
-    backgroundColor: '#fff',
+    marginBottom: 5,
+    marginTop: 150,
+    backgroundColor: '#FFF8E1',
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -163,7 +151,7 @@ const styles = StyleSheet.create({
   calcContainer: {
     width: '100%',
     height: '50%',
-    backgroundColor: '#B0C4DE',
+    backgroundColor: '#F8C7D9',
     borderRadius: 10,
     padding: 10,
     justifyContent: 'center',
@@ -174,7 +162,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   calcButton: {
-    backgroundColor: '#fff',
+    backgroundColor: '#FFF8E1',
     width: 60,
     height: 40,
     justifyContent: 'center',
@@ -187,6 +175,7 @@ const styles = StyleSheet.create({
   },
   sideButtons: {
     marginTop:10,
+    marginBottom:10,
     flexDirection: 'column',
     justifyContent: 'space-between',
     height: 80, // Increased height for better spacing
@@ -196,7 +185,7 @@ const styles = StyleSheet.create({
     width: 300, // Width to make side buttons larger
     height: 35, // Height to fit the design
     borderRadius: 5, // Rounded corners
-    backgroundColor: '#fff', // Background color of side buttons
+    backgroundColor: '#FFF8E1', // Background color of side buttons
   },
 });
 

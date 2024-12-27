@@ -21,11 +21,11 @@ const bills = () => {
       <View style={styles.reportContainer}>
         <View style={styles.reportItem}>
           <Text style={styles.expenseLabel}>Total Expenses</Text>
-          <Text style={styles.expenseAmount}>1500.0</Text>
+          <Text style={styles.expenseAmount}>2200</Text>
         </View>
         <View style={styles.reportItem}>
           <Text style={styles.incomeLabel}>Total Savings</Text>
-          <Text style={styles.incomeAmount}>2000.0</Text>
+          <Text style={styles.incomeAmount}>3000</Text>
         </View>
       </View>
 
@@ -33,13 +33,13 @@ const bills = () => {
       <Text style={styles.sectionTitle}>Savings Progress</Text>
       <View style={styles.section}>
         <View style={styles.row}>
-          <Text style={styles.label}>Today</Text>
+          <Text style={styles.label}>11-25-24</Text>
           <Text style={styles.percentage}>1000</Text>
         </View>
       </View>
       <View style={styles.section}>
         <View style={styles.row}>
-          <Text style={styles.label}>Yesterday</Text>
+          <Text style={styles.label}>12-21-24</Text>
           <Text style={styles.percentage}>1000</Text>
         </View>
       </View>
@@ -63,16 +63,18 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#B0C4DE',
+    backgroundColor: '#F6D6E3',
     padding: 20,
+    
   },
   statisticsContainer: {
-    backgroundColor:'#e4a05e',
+    backgroundColor:'#F8C7D9',
     padding: 20,
     borderRadius: 10,
     marginTop: 20,
     height:300,
-    width:350,
+    width:330,
+    
   },
   sectionTitle: {
     fontSize: 22,
